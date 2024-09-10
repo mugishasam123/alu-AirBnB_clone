@@ -1,10 +1,10 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 
 import cmd
-
 import shlex
 from models.base_model import BaseModel
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     """This is a command line interpreter for interacting with the program"""
@@ -41,9 +41,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             objects = storage.all()
-
             key = args[0] + "." + args[1]
-
             if key in objects:
                 print(objects[key])
             else:
@@ -65,9 +63,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             objects = storage.all()
-
             key = args[0] + "." + args[1]
-
             if key in objects:
                 del objects[key]
                 storage.save()
@@ -82,14 +78,11 @@ class HBNBCommand(cmd.Cmd):
             None
         """
         args = shlex.split(input)
-
         if len(args) == 0:
             objects = storage.all()
             print([str(obj) for obj in objects.values()])
-
         elif args[0] not in self.valid_classes:
             print("** class doesn't exist **")
-
         else:
             objects = storage.all()
             for key, value in objects.items():
@@ -116,15 +109,13 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             objects = storage.all()
-
             key = args[0] + "." + args[1]
-
             if key in objects:
                 obj = objects[key]
                 setattr(obj, args[2], args[3])
                 obj.save()
             else:
-                print("** no instance found **")    
+                print("** no instance found **")
 
     def emptyline(self):
         """Shift cursor to new line when user enters an empty line"""
