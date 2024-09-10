@@ -1,0 +1,33 @@
+#! /usr/bin/python3
+
+import uuid
+
+from datetime import datetime
+
+
+class BaseModel:
+    """Base class for all models"""
+
+    def __init__(self):
+        """Initialize the Base model with three instance attributes"""
+        self.id = str(uuid.uuid4()) 
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+
+    def save(self):
+        """Updates the updated_at attribute to the current datetime when the object is updated"""
+        self.updated_at = datetime.now()
+        return self.updated_at 
+
+    def to_dict(self):
+        """Returns a dictionary containing all keys/values of __dict__ of the instance"""
+        instance_dict = self.__dict__.copy() 
+        instance_dict["__class__"] = self.__class__.__name__
+
+        instance_dict["created_at"] = self.created_at.isoformat()
+        instance_dict["updated_at"] = self.updated_at.isoformat()
+        return instance_dict
+
+    def __str__(self):
+        """Returns a string representation of the instance"""
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
