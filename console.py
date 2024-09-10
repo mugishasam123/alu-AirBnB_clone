@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
 
     def do_show(self, input):
-        """Prints the string representation of an instance.
+        """Prints the string representation of an instance
         Args:
             input (str): The input string containing the class name and instance id.
         Returns:
@@ -71,7 +71,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, input):
-        """Prints all string representation of all instances based or not on the class name.
+        """Prints all string representation of all instances based or
+        not on the class name.
         Args:
             input (str): The input string containing the class name.
         Returns:
@@ -90,9 +91,11 @@ class HBNBCommand(cmd.Cmd):
                     print(str(value))
 
     def do_update(self, input):
-        """Updates an instance based on the class name and id by adding or updating attribute.
+        """Updates an instance based on the class name and id by adding
+        or updating attribute.
         Args:
-            input (str): The input string containing the class name, instance id, attribute name, and attribute value.
+            input (str): The input string containing the class name,
+            instance id, attribute name, and attribute value.
         Returns:
             None
         """
@@ -122,14 +125,14 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_quit(self, input):
-        """Handle quiting interpreter when user types 'quit' command"""
+        """Handle quitting interpreter when user types 'quit' command"""
         return True
 
     def do_EOF(self, input):
         """Handle end-of-file condition. eg: user pressing 'ctrl + D'."""
         print()
         return True
-    
+
     def help(self):
         """Display help message"""
         print("Documented commands (type help <topic>):")
