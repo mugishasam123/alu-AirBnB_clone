@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
 
     def do_show(self, input):
-        """Prints the string representation of an instance.
+        """Prints the string representation of an instance
         Args:
             input (str): The input string containing the class name and instance id.
         Returns:
