@@ -1,10 +1,10 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 
 import cmd
-
 import shlex
 from models.base_model import BaseModel
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     """This is a command line interpreter for interacting with the program"""
@@ -41,9 +41,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             objects = storage.all()
-
             key = args[0] + "." + args[1]
-
             if key in objects:
                 print(objects[key])
             else:
@@ -65,9 +63,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             objects = storage.all()
-
             key = args[0] + "." + args[1]
-
             if key in objects:
                 del objects[key]
                 storage.save()
@@ -75,21 +71,19 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, input):
-        """Prints all string representation of all instances based or not on the class name.
+        """Prints all string representation of all instances based or
+        not on the class name.
         Args:
             input (str): The input string containing the class name.
         Returns:
             None
         """
         args = shlex.split(input)
-
         if len(args) == 0:
             objects = storage.all()
             print([str(obj) for obj in objects.values()])
-
         elif args[0] not in self.valid_classes:
             print("** class doesn't exist **")
-
         else:
             objects = storage.all()
             for key, value in objects.items():
@@ -97,9 +91,11 @@ class HBNBCommand(cmd.Cmd):
                     print(str(value))
 
     def do_update(self, input):
-        """Updates an instance based on the class name and id by adding or updating attribute.
+        """Updates an instance based on the class name and id by adding
+        or updating attribute.
         Args:
-            input (str): The input string containing the class name, instance id, attribute name, and attribute value.
+            input (str): The input string containing the class name,
+            instance id, attribute name, and attribute value.
         Returns:
             None
         """
@@ -116,29 +112,27 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             objects = storage.all()
-
             key = args[0] + "." + args[1]
-
             if key in objects:
                 obj = objects[key]
                 setattr(obj, args[2], args[3])
                 obj.save()
             else:
-                print("** no instance found **")    
+                print("** no instance found **")
 
     def emptyline(self):
         """Shift cursor to new line when user enters an empty line"""
         pass
 
     def do_quit(self, input):
-        """Handle quiting interpreter when user types 'quit' command"""
+        """Handle quitting interpreter when user types 'quit' command"""
         return True
 
     def do_EOF(self, input):
         """Handle end-of-file condition. eg: user pressing 'ctrl + D'."""
         print()
         return True
-    
+
     def help(self):
         """Display help message"""
         print("Documented commands (type help <topic>):")
