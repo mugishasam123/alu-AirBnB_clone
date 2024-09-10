@@ -28,7 +28,8 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, input):
         """Prints the string representation of an instance
         Args:
-            input (str): The input string containing the class name and instance id.
+            input (str): The input string containing the
+            class name and instance id.
         Returns:
             None
         """
@@ -50,7 +51,8 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, input):
         """Deletes an instance based on the class name and id.
         Args:
-            input (str): The input string containing the class name and instance id.
+            input (str): The input string containing the class
+            name and instance id.
         Returns:
             None
         """

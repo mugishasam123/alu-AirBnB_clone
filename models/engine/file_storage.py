@@ -5,9 +5,11 @@ import os
 from models.base_model import BaseModel
 from models.user import User
 
+
 class FileStorage:
     """
-    This class represents a file storage system for storing and retrieving objects in JSON format.
+    This class represents a file storage system for
+    storing and retrieving objects in JSON format.
     """
     __file_path = "file.json"
     __objects = {}
@@ -36,7 +38,7 @@ class FileStorage:
         for key, value in all_objects.items():
             obj_dict[key] = value.to_dict()
         with open(FileStorage.__file_path, "w") as file:
-            json.dump(obj_dict, file)    
+            json.dump(obj_dict, file)
 
     def reload(self):
         """
@@ -58,4 +60,3 @@ class FileStorage:
         Resets the storage system by clearing all objects.
         """
         self._FileStorage__objects = {}
-
