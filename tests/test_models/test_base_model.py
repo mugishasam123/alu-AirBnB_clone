@@ -4,6 +4,8 @@ import unittest
 from datetime import datetime
 
 from models.base_model import BaseModel
+from models import storage
+
 
 
 class TestBaseModel(unittest.TestCase):
@@ -12,6 +14,11 @@ class TestBaseModel(unittest.TestCase):
     def setUp(self):
         """Set up BaseModel instance for testing"""
         self.base_model_instance = BaseModel()
+        with open("test_file.json", "w") as f:
+            pass
+
+        # Save the file
+        storage.save()
 
     def tearDown(self):
         del self.base_model_instance
