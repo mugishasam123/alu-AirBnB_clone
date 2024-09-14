@@ -1,17 +1,34 @@
-#!/usr/bin/python3
+#! /usr/bin/python3
+"""This module contains the command line interpreter for the program"""
 
 import cmd
 import shlex
+
 from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.state import State
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    """This is a command line interpreter for interacting with the program"""
+    """
+    This is a command line interpreter for interacting with the program
+    """
 
     prompt = "(hbnb) "
 
-    valid_classes = ["BaseModel"]
+    valid_classes = ["BaseModel",
+                     "User",
+                     "State",
+                     "City",
+                     "Amenity",
+                     "Place",
+                     "Review"
+                     ]
 
     def do_create(self, input):
         """Create a new instance of a class"""
@@ -26,10 +43,12 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
 
     def do_show(self, input):
-        """Prints the string representation of an instance
+        """Prints the string representation of an instance.
+
         Args:
-            input (str): The input string containing the
-            class name and instance id.
+            input (str): The input string containing the class name and
+            instance id.
+
         Returns:
             None
         """
@@ -42,7 +61,9 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             objects = storage.all()
+
             key = args[0] + "." + args[1]
+
             if key in objects:
                 print(objects[key])
             else:
@@ -50,9 +71,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, input):
         """Deletes an instance based on the class name and id.
+
         Args:
-            input (str): The input string containing the class
-            name and instance id.
+            input (str): The input string containing the class name and
+            instance id.
+
         Returns:
             None
         """
@@ -65,7 +88,9 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             objects = storage.all()
+
             key = args[0] + "." + args[1]
+
             if key in objects:
                 del objects[key]
                 storage.save()
@@ -75,17 +100,22 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, input):
         """Prints all string representation of all instances based or
         not on the class name.
+
         Args:
             input (str): The input string containing the class name.
+
         Returns:
             None
         """
         args = shlex.split(input)
+
         if len(args) == 0:
             objects = storage.all()
             print([str(obj) for obj in objects.values()])
+
         elif args[0] not in self.valid_classes:
             print("** class doesn't exist **")
+
         else:
             objects = storage.all()
             for key, value in objects.items():
@@ -95,9 +125,11 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, input):
         """Updates an instance based on the class name and id by adding
         or updating attribute.
+
         Args:
             input (str): The input string containing the class name,
             instance id, attribute name, and attribute value.
+
         Returns:
             None
         """
@@ -114,7 +146,9 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             objects = storage.all()
+
             key = args[0] + "." + args[1]
+
             if key in objects:
                 obj = objects[key]
                 setattr(obj, args[2], args[3])
@@ -127,7 +161,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_quit(self, input):
-        """Handle quitting interpreter when user types 'quit' command"""
+        """Handle quiting interpreter when user types 'quit' command"""
         return True
 
     def do_EOF(self, input):
@@ -151,5 +185,5 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    """Check if a file is provided as an argument and run commands from it"""
     HBNBCommand().cmdloop()
+   
