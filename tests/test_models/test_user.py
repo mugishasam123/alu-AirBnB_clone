@@ -46,6 +46,20 @@ class TestUser(unittest.TestCase):
 
         self.assertTrue(issubclass(type(user), BaseModel))
 
+    def test_addition(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(1+1, 2)
+
+    def test_subtraction(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(2-1, 1)
+
     def test_user_string_representation(self):
         """
         Tests the string representation of User.

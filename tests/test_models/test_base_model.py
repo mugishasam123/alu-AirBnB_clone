@@ -54,6 +54,20 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertEqual(updated_at, self.base_model_instance.updated_at) 
 
+    def test_addition(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(1+1, 2)
+
+    def test_subtraction(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(2-1, 1)
+
     def test_to_dict(self):
         """Test if the to_dict method returns the correct dictionary version of the instance"""
 

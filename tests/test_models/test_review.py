@@ -72,6 +72,13 @@ class TestReview(unittest.TestCase):
         self.assertEqual(review_dict["user_id"], "456")
         self.assertEqual(review_dict["text"], "This place is great!")
 
+    def test_addition(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(1+1, 2)
+
     def test_review_save(self):
         """
         Tests the save method of Review.

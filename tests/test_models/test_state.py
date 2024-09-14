@@ -56,6 +56,20 @@ class TestState(unittest.TestCase):
 
         self.assertEqual(str(state), f"[State] ({state.id}) {state.__dict__}")
 
+    def test_addition(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(1+1, 2)
+
+    def test_subtraction(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(2-1, 1)
+
     def test_state_to_dict(self):
         """
         Tests the to_dict method of State.

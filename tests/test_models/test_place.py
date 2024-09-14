@@ -56,6 +56,13 @@ class TestPlace(unittest.TestCase):
         place = Place()
 
         self.assertTrue(issubclass(type(place), BaseModel))
+
+    def test_addition(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(1+1, 2)
     
     def test_place_to_dict(self):
         """

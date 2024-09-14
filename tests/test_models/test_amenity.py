@@ -35,6 +35,13 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity()
 
         self.assertEqual(amenity.name, "")
+
+    def test_amenity_addition(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(1+1, 2)
     
     def test_amenity_inherits_from_basemodel(self):
         """

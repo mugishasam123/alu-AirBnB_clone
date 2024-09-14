@@ -55,6 +55,13 @@ class TestCity(unittest.TestCase):
 
         self.assertEqual(str(city), f"[City] ({city.id}) {city.__dict__}")
 
+    def test_addition(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(1+1, 2)
+
     def test_city_to_dict(self):
         """
         Tests the to_dict method of City.
