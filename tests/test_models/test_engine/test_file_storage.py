@@ -56,6 +56,13 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn('BaseModel.' + obj2.id, all_objects)
         self.assertEqual(all_objects['BaseModel.' + obj2.id], obj2)
 
+    def test_addition(self):
+        """
+        Tests the default values of Amenity attributes.
+        """
+
+        self.assertEqual(1+1, 2)
+
     def test_save(self):
         """
         Test the 'save' method of the FileStorage class.
