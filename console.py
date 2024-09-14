@@ -21,6 +21,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    # Define classes which can be created using the "create" command
     valid_classes = ["BaseModel",
                      "User",
                      "State",
@@ -60,10 +61,13 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
         else:
+            # Get all currently stored objects
             objects = storage.all()
 
+            # Construct a key in format "<class name>.<id>"
             key = args[0] + "." + args[1]
 
+            # Check if key exists in objects
             if key in objects:
                 print(objects[key])
             else:
@@ -87,10 +91,13 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
         else:
+            # Get all currently stored objects
             objects = storage.all()
 
+            # Construct a key in format "<class name>.<id>"
             key = args[0] + "." + args[1]
 
+            # Check if key exists in objects
             if key in objects:
                 del objects[key]
                 storage.save()
@@ -109,13 +116,16 @@ class HBNBCommand(cmd.Cmd):
         """
         args = shlex.split(input)
 
+        # if no class name is provided, print all instances
         if len(args) == 0:
             objects = storage.all()
             print([str(obj) for obj in objects.values()])
 
+        # if an invalid class name is provided, notify user
         elif args[0] not in self.valid_classes:
             print("** class doesn't exist **")
 
+        # if a valid class name is provided, print all instances of that class
         else:
             objects = storage.all()
             for key, value in objects.items():
@@ -145,10 +155,13 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print("** value missing **")
         else:
+            # Get all currently stored objects
             objects = storage.all()
 
+            # Construct a key in format "<class name>.<id>"
             key = args[0] + "." + args[1]
 
+            # Update the object if key exists in objects
             if key in objects:
                 obj = objects[key]
                 setattr(obj, args[2], args[3])
@@ -186,4 +199,9 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-   
+    # import sys
+    # if len(sys.argv) > 1:
+    #     HBNBCommand.run_from_file(sys.argv[1])
+    # else:
+    #     interpreter = HBNBCommand()
+    #     interpreter.cmdloop()

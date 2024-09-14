@@ -4,12 +4,17 @@ import json
 import os
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
     """
-    This class represents a file storage system for
-    storing and retrieving objects in JSON format.
+    This class represents a file storage system for storing
+    and retrieving objects in JSON format.
     """
     __file_path = "file.json"
     __objects = {}
@@ -23,6 +28,7 @@ class FileStorage:
     def new(self, obj):
         """
         Adds a new object to the storage system.
+
         Args:
             obj: The object to be added.
         """
@@ -55,6 +61,7 @@ class FileStorage:
         except:
             pass
 
+    # For testing purposes only
     def reset(self):
         """
         Resets the storage system by clearing all objects.

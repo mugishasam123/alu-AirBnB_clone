@@ -17,9 +17,11 @@ class TestPlace(unittest.TestCase):
         """
         Creates a temporary test file and saves it.
         """
+        # Create a temporary test file
         with open("test_file.json", "w") as f:
             pass
 
+        # Save the file
         storage.save()
     
     def tearDown(self):
@@ -27,16 +29,20 @@ class TestPlace(unittest.TestCase):
         Removes the temporary test file if it exists.
         """
         try:
+            # Try removing the test file
             os.remove("test_file.json")
         except FileNotFoundError:
+            # Ignore if the file doesn't exist
             pass
     
     def test_place_attributes(self):
         """
         Tests the default values of Place attributes.
         """
+        # Create a new Place instance
         place = Place()
 
+        # Assert that city_id, user_id, name, and description are empty strings
         self.assertEqual(place.city_id, "")
         self.assertEqual(place.user_id, "")
         self.assertEqual(place.name, "")
@@ -53,21 +59,17 @@ class TestPlace(unittest.TestCase):
         """
         Tests that Place inherits from BaseModel.
         """
+        # Create a new Place instance
         place = Place()
 
+        # Assert that Place is a subclass of BaseModel
         self.assertTrue(issubclass(type(place), BaseModel))
-
-    def test_addition(self):
-        """
-        Tests the default values of Amenity attributes.
-        """
-
-        self.assertEqual(1+1, 2)
     
     def test_place_to_dict(self):
         """
         Tests the to_dict method of Place.
         """
+        # Create a new Place instance
         place = Place()
         place.city_id = "123"
         place.user_id = "456"
@@ -81,8 +83,10 @@ class TestPlace(unittest.TestCase):
         place.longitude = 1.0
         place.amenity_ids = ["amenity_id1"]
 
+        # Get the dictionary representation of Place
         place_dict = place.to_dict()
 
+        # Assert that the dictionary is formatted correctly
         self.assertEqual(place_dict["__class__"], "Place")
         self.assertEqual(place_dict["id"], place.id)
         self.assertEqual(place_dict["created_at"], place.created_at.isoformat())
@@ -103,20 +107,26 @@ class TestPlace(unittest.TestCase):
         """
         Tests the string representation of Place.
         """
+        # Create a new Place instance
         place = Place()
 
+        # Get the string representation of Place
         place_str = str(place)
 
+        # Assert that the string representation is formatted correctly
         self.assertEqual(place_str, f"[Place] ({place.id}) {place.__dict__}")
     
     def test_place_save(self):
         """
         Tests the save method of Place.
         """
+        # Create a new Place instance
         place = Place()
 
+        # Save the place
         place.save()
 
+        # Assert that the place was added to the storage
         self.assertIn(f"Place.{place.id}", storage.all())
 
 
